@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Flag Quiz</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css')}}">
+    </head>
+    <body>
+        <div class="main-container">
+            <div class="container" id="myDiv">
+                <h2>Flag Quiz</h2>
+                <h3>Which nation is this flag representing?</h3> 
+                <img src="{{ image_url }}" class="img_flag"/>
+                <form action="/check_ans" method="POST" style="margin-top: 10px;">
+                    <input type="hidden" id="flag_img" name="flag_img" value="{{image_url}}">
+                    <input type="hidden" id="official_cname" name="official_cname" value="{{official_name}}">
+                    <input type="hidden" id="common_cname" name="common_cname" value="{{common_name}}">
+                    <input type="text" name="answer" class="input-1"><br/>
+                    <button type="submit" value="submit" class="custom-btn btn-1">Check</button>
+                </form>
+                {% if result %}
+                <div class="res">
+                    <img src="{{ url_for( 'static', filename= path + '/' + name) }}" class="logo">
+                    <audio controls autoplay>
+                        <source src="{{url_for('static',  filename = music)}}" type="audio/mpeg">
+                    </audio>
+                    <h3 id="result">{{ result }}</h3>
+                </div>
+                <button class="custom-btn next" onclick="nextFlag()">Next</button>
+                {% endif %}
+            </div>
+        </div>
+        <script>
+            function nextFlag(){
+                window.location.href = '/enter_flag';
+            }       
+        </script>
+    </body>
+</html>

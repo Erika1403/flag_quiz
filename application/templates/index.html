@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flag Quiz</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css')}}">
+</head>
+<body>
+    <div class="main-container">
+        <div class="sub-container">
+            <div class="f-quiz"><h1 class="title">Flag Quiz</h1></div>
+            <div class="games">
+                <div class="gm" id="enter">
+                    <img src="{{ url_for( 'static', filename= path + '/' + name1) }}" class="icon">
+                    <h2 class="gm_lbl">Enter the Flag</h2>
+                </div>
+                <div class="gm" id="choose_flag">
+                    <img src="{{ url_for( 'static', filename= path + '/' + name2) }}" class="icon">
+                    <h2 class="gm_lbl">Choose the flag</h2>
+                </div>
+                <div class="gm" id="choose_country">
+                    <img src="{{ url_for( 'static', filename= path + '/' + name3) }}" class="icon">
+                    <h2 class="gm_lbl">Choose the country</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var divType = document.getElementById("enter");
+        var divChooseFlag = document.getElementById("choose_flag");
+        var divChooseCountry = document.getElementById("choose_country");
+
+        divType.addEventListener("click", function(){
+            window.location.href = "/enter_flag";
+        })
+
+        divChooseFlag.addEventListener("click", function(){
+            window.location.href = "/choose_flag";
+        })
+
+        divChooseCountry.addEventListener("click", function(){
+            window.location.href = "/choose_country";
+        })
+    </script>
+</body>
+</html>

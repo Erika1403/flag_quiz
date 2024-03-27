@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flag Quiz</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css')}}">
+</head>
+<body>
+    <div class="main-container">
+        <div class="container2">
+            <h1 style="color: black; margin-top: 20px;">Flag Quiz</h1> 
+            {% if show %}
+            <h2>Choose the flag of </h2>
+            <h2 id="ctry">{{ country }}</h2>
+            <form action="/check_flag" method="POST">
+                <div class="flag_choices">
+                    {% for key, value in my_dict.items() %}
+                    <label class="label-2">
+                        <input value="{{ key }}" name="my_ans" id="{{ key }}" class="radio-input" type="radio">
+                        <div class="radio-design"></div>
+                        <img src="{{ value }}" alt="Image 1" class="img_option">
+                    </label>
+                    {% endfor %}
+                </div>
+                <input type="hidden" id="ctry_flag" name="ctry_flag" value="{{cor_ans}}">
+                <input type="hidden" id="img_flag" name="img_flag" value="{{cor_img}}">
+                <button type="submit" value="submit" class="custom-btn btn-1">Check</button>
+            </form>
+            {% else %}
+            <h2>{{ country }}</h2>
+            <img src="{{correct_img}}" class="img_ans">
+            <div class="res">
+                <img src="{{ url_for( 'static', filename= path + '/' + name) }}" class="logo">
+                <audio controls autoplay>
+                    <source src="{{url_for('static',  filename = music)}}" type="audio/mpeg">
+                </audio>
+                <h3 id="result">{{result}}</h3>
+            </div>
+            <button class="custom-btn next" onclick="nextCountry()">Next</button>
+            {% endif %}
+        </div>
+    </div>
+    <script>
+        function nextCountry(){
+                window.location.href = '/choose_flag';
+        }
+        
+    </script>
+</body>
+</html>

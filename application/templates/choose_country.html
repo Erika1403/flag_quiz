@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flag Quiz</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css')}}">
+</head>
+<body>                             
+    <div class="main-container">
+        <div class="container3">
+            <div class="question">
+                {% if show %}
+                <h2>What country does this flag represent?</h2>
+                {% else %}
+                <h2>{{correct_answer}}</h2>
+                {% endif %}
+                <img src="{{flag_img}}" class="q-flag">
+            </div>
+            {% if show %}
+            <div class="frm_choices">
+                <form action="/check_country" method="POST">
+                    <div class="my_country_choices" >
+                        {% for item in list %}
+                        <label class="label">
+                            <input value="{{item}}" name="choices" id="{{item}}" class="radio-input" type="radio">
+                            <div class="radio-design"></div>
+                            <div class="label-text">{{item}}</div>
+                        </label>
+                        {% endfor %}     
+                    </div>
+                    <input type="hidden" id="cor_answer" name="cor_answer" value="{{cor_ans}}">
+                    <input type="hidden" id="flag_img" name="flag_img" value="{{flag_img}}">
+                    <br/>
+                    <button type="submit" value="submit" class="custom-btn btn-1">Check</button>
+                </form>
+            </div>
+            {% else %}
+            <div class="res-wrapper">
+                <div class="res">
+                    <img src="{{ url_for( 'static', filename= path + '/' + name) }}" class="logo">
+                    <audio controls autoplay>
+                        <source src="{{url_for('static',  filename = music)}}" type="audio/mpeg">
+                    </audio>
+                    <h3 id="result">{{result}}</h3>
+                </div>
+                <button class="custom-btn next" onclick="countryNext()">Next</button>
+            </div>
+            {%endif%}
+        </div>
+    </div>
+    <script>
+        function countryNext(){
+                window.location.href = '/choose_country';
+        }
+    </script>
+</body>
+</html>
