@@ -58,7 +58,7 @@ def check_ans():
     cm_ans = request.form['common_cname']
     img = request.form['flag_img']
     ans = request.form['answer']
-    if ans.lower() == of_ans.lower() or ans.lower() == cm_ans.lower():
+    if ans.lower().strip() == of_ans.lower() or ans.lower().strip() == cm_ans.lower():
         message = "Correct! Well done."
         path = "css/images/icons8/correct"
         fx = "css/audio/QL7TEGT-applause-cheering.mp3"
