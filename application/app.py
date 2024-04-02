@@ -102,12 +102,12 @@ def check_flag():
     if ans == user_ans:
         message = "Correct! Good job!"
         path = "css/images/icons8/correct"
-        fx = "css/audio/QL7TEGT-applause-cheering.mp3"
+        fx = "css/audio/success-1-6297.mp3"
         logo = pick_img(correct_img_path)
     else: 
         message = "Sorry! You chose a wrong answer."
         path = "css/images/icons8/wrong"
-        fx = "css/audio/CF7R4XZ-wrong-answer-tuba.mp3"
+        fx = "css/audio/violin-lose-1-175615.mp3"
         logo = pick_img(wrong_img_path)
 
     return render_template('choose_flag.html', country=ans, show=toShow, correct_img=img, result=message, path = path, name=logo, music=fx)
